@@ -7,8 +7,10 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.1-rc.0/web3.min.js" integrity="sha512-Ui9NE+/XdhwxssTrWetwWgpwpZJCLgTpB2dgkq+xe3O7lmZEJe+2rw3OT3YbYIUCQWH5dOO8ObLOYmbUVpPBgw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
+	<input type="text" name="address" id="address" value="0x05D4A8286Ef7211cf2570722Def303C65b60f954">
+	<a id="getCatsTiersData" href="#">CHECK $MILK</a>
 
-	<a id="getCatsData" href="#">hola</a>
+	<h1 id="milkResult"></h1>
 
 	<script type="text/javascript">
 		const polygonWeb3 = new Web3(new Web3.providers.HttpProvider("https://polygon-rpc.com/"));
@@ -25,38 +27,55 @@
 		const treasuryContract = new polygonWeb3.eth.Contract(treasuryABI, treasuryAddress);
 		const catsContract = new mainnetWeb3.eth.Contract(catsABI, catsAddress);
 
-		treasuryContract.methods.calcClaim([5708], [9]).call().then(result =>
-		    console.log(result*1e-18)
-		);
+		async function getTier(cat) {
+			let tier = "";
+			let resp = await fetch("https://api.coolcatsnft.com/cat/" + cat);
+		    resp = await resp.json();
 
-		async function getCats() {
-			bonusArray = [];
-			catsArray = [];
+    		await resp.attributes.forEach((attr) => {
+    			if (attr["trait_type"] == "tier") {
+    				tier = catPoints[attr["value"]];
+    			}
+    		});
 
-			cats = await catsContract.methods.walletOfOwner("0x05D4A8286Ef7211cf2570722Def303C65b60f954").call();
+    		return tier;
+		}
 
-			cats.forEach(async function (cat) {
-		    	let resp = await fetch("https://api.coolcatsnft.com/cat/" + cat).then(resp => resp.json());
+		async function getCatsTiers() {
+			address = document.querySelector("#address").value;
 
-	    		resp.attributes.forEach((attr) => {
-	    			if (attr["trait_type"] == "tier") {
-	    				catsArray.push(parseInt(cat));
-	    				bonusArray.push(catPoints[attr["value"]]);
-	    			}
-	    		});
-	    		
-	    		console.log(catsArray.length);
-		    });
+			if (address.length != 42) {
+				document.querySelector("#milkResult").textContent = "Invalid Address";
+				return;
+			}
 
-			return [catsArray.length, bonusArray.length];
+			cats = await catsContract.methods.walletOfOwner(address).call();
+
+			if (cats.length == 0) {
+				document.querySelector("#milkResult").textContent = "You have no Cool Cats";
+				return;
+			}
+
+			tiers = [];
+
+			tierPromises = cats.map((cat) => getTier(cat));
+			await Promise.all(tierPromises).then(t => tiers = t);
+
+			return [cats, tiers];
 		}
 
 		async function getMilk() {
-			await getCats().then(miau => console.log("MIAU", miau));	
+			addressInfo = await getCatsTiers();
+			if (addressInfo != undefined) {
+				[cats, tiers] = addressInfo;
+				treasuryContract.methods.calcClaim(cats, tiers).call().then(result =>
+					document.querySelector("#milkResult").textContent = "You have " + parseFloat(result*1e-18).toFixed(4) + " $MILK unclaimed"
+				);
+			}
 		}
 		
 		window.addEventListener('load', async () => {
-        	document.querySelector("#getCatsData").addEventListener("click", getMilk);
+        	document.querySelector("#getCatsTiersData").addEventListener("click", getMilk);
     	});
 	</script>
 
