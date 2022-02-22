@@ -12,6 +12,12 @@ const catPoints = {"cool_1": 3, "cool_2": 4, "wild_1": 5, "wild_2": 6, "classy_1
 const treasuryContract = new polygonWeb3.eth.Contract(treasuryABI, treasuryAddress);
 const catsContract = new mainnetWeb3.eth.Contract(catsABI, catsAddress);
 
+async function getMilkPrice() {
+	let req = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=milk&vs_currencies=usd");
+	req = await req.json();
+	return parseFloat(req.milk.usd);
+}
+
 async function getTier(cat) {
 	let tier = "";
 	let resp = await fetch("https://api.coolcatsnft.com/cat/" + cat);
@@ -58,13 +64,20 @@ async function getCatsTiers() {
 }
 
 async function getMilk() {
-	document.querySelector("#catImages").innerHTML  = "";
+	document.querySelector("#milkResult").innerHTML = "Loading results...";
+	document.querySelector("#catImages").innerHTML = "";
+	document.querySelector("#priceCalculation").innerHTML = "";
+	document.querySelector("#milkPrice").innerHTML = "";
+
 	addressInfo = await getCatsTiers();
+	milkPrice = await getMilkPrice();
 	if (addressInfo != undefined) {
 		[cats, tiers] = addressInfo;
-		treasuryContract.methods.calcClaim(cats, tiers).call().then(result =>
-			document.querySelector("#milkResult").textContent = "You have " + parseFloat(result*1e-18).toFixed(2) + " $MILK unclaimed"
-		);
+		treasuryContract.methods.calcClaim(cats, tiers).call().then(function (result) {
+			document.querySelector("#milkResult").textContent = "You have " + parseFloat(result*1e-18).toFixed(2) + " MILK unclaimed";
+			document.querySelector("#priceCalculation").textContent = "$" + parseFloat(result*1e-18*milkPrice).toFixed(2) + " USD";
+			document.querySelector("#milkPrice").textContent = "(1 MILK = " + milkPrice + " USD)";
+		});
 	}
 }
 
