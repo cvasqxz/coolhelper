@@ -55,10 +55,8 @@ async function getCatsTiers() {
 		return;
 	}
 
-	tiers = [];
-
 	tierPromises = cats.map((cat) => getTier(cat));
-	await Promise.all(tierPromises).then(t => tiers = t);
+	tiers = await Promise.all(tierPromises);
 
 	return [cats, tiers];
 }
