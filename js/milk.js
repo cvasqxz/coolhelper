@@ -62,10 +62,10 @@ async function getCatsTiers() {
 }
 
 async function getMilk() {
-	document.querySelector("#milkResult").innerHTML = "Loading results...";
-	document.querySelector("#catImages").innerHTML = "";
-	document.querySelector("#priceCalculation").innerHTML = "";
-	document.querySelector("#milkPrice").innerHTML = "";
+	document.querySelector("#milkResult").textContext = "Loading results...";
+	document.querySelector("#catImages").textContext = "";
+	document.querySelector("#priceCalculation").textContext = "";
+	document.querySelector("#milkPrice").textContext = "";
 
 	addressInfo = await getCatsTiers();
 	milkPrice = await getMilkPrice();
