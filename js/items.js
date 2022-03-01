@@ -5,6 +5,14 @@ const itemsABI = [{"inputs":[{"internalType":"string","name":"uri","type":"strin
 
 const itemsContract = new polygonWeb3.eth.Contract(itemsABI, itemsAddress);
 
+async function getInfo() {
+	let boxPrice = await itemsContract.methods._boxPrice.call().call();
+	let boxRewardCount = await itemsContract.methods._boxRewardCount.call().call();
+
+	document.querySelector("#boxPrice").textContent = parseFloat(boxPrice*1e-18).toFixed(0) + " MILK";
+	document.querySelector("#boxRewardCount").textContent = boxRewardCount + " Items";
+}
+
 async function getItems() {
 	let items = await itemsContract.methods.getItems().call();
 	let table = document.getElementById("tableItems");
@@ -21,9 +29,9 @@ async function getItems() {
   		itemPicture.innerHTML = '<img src="https://metadata.coolcatsnft.com/item/image/' + item[2] + '.png" width="100">';
   		itemCategory.textContent = polygonWeb3.utils.toUtf8(item[0]);
   		itemType.textContent = polygonWeb3.utils.toUtf8(item[1]);
-  		console.log(item);
 	});
 }
 
 
 getItems();
+getInfo();

@@ -10,7 +10,26 @@
 <body>
 	<div class="container">
 		<h1 class="py-5">CoolHelper: Items</h1>
-		<div class="table-responsive">
+
+		<div class="container">
+			<div class="row justify-content-md-center">
+				<div class="col col-lg-3">
+				<table id="tableInfo" class="table table-sm table-borderless">
+					<tbody>
+						<tr>
+							<th scope="row">Chest price</th>
+							<td id="boxPrice"></td>
+						</tr>
+						<tr>
+							<th scope="row">Chest reward</th>
+							<td id="boxRewardCount"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="table-responsive py-5">
 			<table id="tableItems" class="table text-center">
 				<thead>
 					<tr>
