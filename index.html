@@ -3,41 +3,64 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>CoolHelper - Items</title>
+	<title>CoolHelper</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
-	<div class="container">
-		<h1 class="py-5">CoolHelper</h1>
+	<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+		<div class="container">
+			<a class="navbar-brand" href="#">CoolHelper</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
+					<li class="nav-item"><a class="nav-link" href="/milk.html">Milk Checker</a></li>
+					<li class="nav-item"><a class="nav-link" href="/items.html">Item Database</a></li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Smart Contracts</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item" href="https://polygonscan.com/address/0x1599fe55cda767b1f631ee7d414b41f5d6de393d#code" target="_blank">MilkChild</a></li>
+							<li><a class="dropdown-item" href="https://polygonscan.com/address/0x6b89db9d824da54e4d9ac4381c288e445ec12b71#code" target="_blank">Treasury</a></li>
+							<li><a class="dropdown-item" href="https://polygonscan.com/address/0x284b85461e56b2805ea8104fc14fd5f08382886f#code" target="_blank">SystemChecker</a></li>
+							<li><a class="dropdown-item" href="https://polygonscan.com/address/0x865436a5c5e0451ead1d1962e060c1659c191453#code" target="_blank">ItemFactory</a></li>
+							<li><a class="dropdown-item" href="https://polygonscan.com/address/0x410e5ddaa97ca283aad32453ffa1e40816e3d2ce#code" target="_blank">Quests</a></li>
+							<li><a class="dropdown-item" href="https://polygonscan.com/address/0x09cb15414ac50403329719412a3bb837f26b38c9#code" target="_blank">PetInteractionHandler</a></li>
+							<li><a class="dropdown-item" href="https://polygonscan.com/address/0x466a639a3a431ecd79002cf9ba764abff7882381#code" target="_blank">Marketplace</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 
-		<h4>Tools</h4>
-		<ul>
-			<li><a href="milk.html">Unclaimed $MILK checker</a></li>
-			<li><a href="items.html">Cooltopia items dump</a></li>
-		</ul>
-
-		<h4>Current smart contracts</h4>
-		<ul>
-			<li><a href="https://polygonscan.com/address/0x1599fe55cda767b1f631ee7d414b41f5d6de393d#code" target="_blank">MilkChild</a></li>
-			<li><a href="https://polygonscan.com/address/0x6b89db9d824da54e4d9ac4381c288e445ec12b71#code" target="_blank">Treasury</a></li>
-			<li><a href="https://polygonscan.com/address/0x284b85461e56b2805ea8104fc14fd5f08382886f#code" target="_blank">SystemChecker</a></li>
-			<li><a href="https://polygonscan.com/address/0x865436a5c5e0451ead1d1962e060c1659c191453#code" target="_blank">ItemFactory</a></li>
-			<li><a href="https://polygonscan.com/address/0x410e5ddaa97ca283aad32453ffa1e40816e3d2ce#code" target="_blank">Quests</a></li>
-			<li><a href="https://polygonscan.com/address/0x09cb15414ac50403329719412a3bb837f26b38c9#code" target="_blank">PetInteractionHandler</a></li>
-			<li><a href="https://polygonscan.com/address/0x466a639a3a431ecd79002cf9ba764abff7882381#code" target="_blank">Marketplace</a></li>
-		</ul>
-
-		<!--
-		And just as a seemingly minor invention like barbed
-		wire made possible the fencing-off of vast ranches and farms, thus
-		altering forever the concepts of land and property rights in the
-		frontier West, so too will the seemingly minor discovery out of an
-		arcane branch of mathematics come to be the wire clippers which
-		dismantle the barbed wire around intellectual property.
-		
-		Arise, you have nothing to lose but your barbed wire fences!
-		-->
-		
+	<div class="container pt-5">
+		<div class="row justify-content-md-center">
+			<div class="col col-lg-5 text-center">
+				<p><i>
+					Just as the technology of printing altered and reduced the power of 
+					medieval guilds and the social power structure, so too will cryptologic 
+					methods fundamentally alter the nature of corporations and of government 
+					interference in economic transactions. Combined with emerging information 
+					markets, crypto anarchy will create a liquid market for any and all 
+					material which can be put into words and pictures.
+				</i></p>
+				<p><i>
+					And just as a seemingly minor invention like barbed
+					wire made possible the fencing-off of vast ranches and farms, thus
+					altering forever the concepts of land and property rights in the
+					frontier West, so too will the seemingly minor discovery out of an
+					arcane branch of mathematics come to be the wire clippers which
+					dismantle the barbed wire around intellectual property.
+				</i></p>
+				<p><i>
+					Arise, you have nothing to lose but your barbed wire fences!
+				</i></p>
+				<p><a href="https://nakamotoinstitute.org/crypto-anarchist-manifesto/" target="_blank">The Crypto Anarchist Manifesto (1988)</a></p>
+			</div>
+		</div>
 	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
