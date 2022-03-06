@@ -61,24 +61,26 @@ async function getCatsTiers() {
 	return [cats, tiers];
 }
 
-async function getMilk() {
-	document.querySelector("#milkResult").textContext = "Loading results...";
-	document.querySelector("#catImages").textContext = "";
-	document.querySelector("#priceCalculation").textContext = "";
-	document.querySelector("#milkPrice").textContext = "";
-
-	addressInfo = await getCatsTiers();
+async function getMilk(addressInfo) {
 	milkPrice = await getMilkPrice();
 	if (addressInfo != undefined) {
 		[cats, tiers] = addressInfo;
 		treasuryContract.methods.calcClaim(cats, tiers).call().then(function (result) {
 			document.querySelector("#milkResult").textContent = "You have " + parseFloat(result*1e-18).toFixed(2) + " MILK unclaimed";
-			document.querySelector("#priceCalculation").textContent = "$" + parseFloat(result*1e-18*milkPrice).toFixed(2) + " USD";
-			document.querySelector("#milkPrice").textContent = "(1 MILK = " + milkPrice + " USD)";
+			document.querySelector("#priceCalculation").textContent = "$" + parseFloat(result*1e-18*milkPrice).toFixed(4) + " USD";
+			document.querySelector("#milkPrice").textContent = "(1 MILK = " + parseFloat(milkPrice).toFixed(4) + " USD)";
+			document.title = "CoolHelper - " + parseFloat(result*1e-18).toFixed(2) + " $MILK";
 		});
 	}
 }
 
+async function getMilkTimer() {
+	document.querySelector("#catImages").innerHTML = "";
+	addressInfo = await getCatsTiers();
+	getMilk(addressInfo);
+	setInterval(getMilk, 3500, addressInfo);
+}
+
 window.addEventListener('load', async () => {
-	document.querySelector("#getCatsTiersData").addEventListener("click", getMilk);
+	document.querySelector("#getCatsTiersData").addEventListener("click", getMilkTimer);
 });
