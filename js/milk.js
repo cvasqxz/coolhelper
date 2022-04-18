@@ -94,6 +94,7 @@ async function getMilk(addressInfo) {
 }
 
 async function getMilkTimer() {
+	document.querySelector("#errors").textContent = "Loading...";
 	addressInfo = await getCatsTiers();
 	getMilk(addressInfo);
 	setInterval(getMilk, 3500, addressInfo);
