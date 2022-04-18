@@ -43,14 +43,14 @@ async function getCatsTiers() {
 	address = document.querySelector("#address").value;
 
 	if (address.length != 42) {
-		document.querySelector("#milkBalance").textContent = "Invalid Address";
+		document.querySelector("#errors").textContent = "Invalid Address";
 		return;
 	}
 
 	cats = await catsContract.methods.walletOfOwner(address).call();
 
 	if (cats.length == 0) {
-		document.querySelector("#milkBalance").textContent = "You have no Cool Cats";
+		document.querySelector("#errors").textContent = "You have no Cool Cats";
 		return;
 	}
 
@@ -70,6 +70,8 @@ async function getMilk(addressInfo) {
 		let unclaimed = 0.0;
 		let balance = 0.0;
 
+		document.querySelector("#errors").textContent = "";
+
 		await treasuryContract.methods.calcClaim(cats, tiers).call().then(function (result) {
 			unclaimed = parseFloat(result * 1e-18);
 			document.querySelector("#milkUnclaimed").textContent = unclaimed.toFixed(2);
@@ -84,6 +86,10 @@ async function getMilk(addressInfo) {
 
 		document.querySelector("#milkTotal").textContent = (unclaimed + balance).toFixed(2);
 		document.querySelector("#usdTotal").textContent = ((unclaimed + balance)*milkPrice).toFixed(2);
+
+		if (document.querySelector("#milkTable").style.visibility == "hidden") {
+			document.querySelector("#milkTable").style.visibility = "visible";
+		}
 	}
 }
 
