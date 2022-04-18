@@ -7,10 +7,15 @@ const catsABI = [{"inputs":[{"internalType":"string","name":"baseURI","type":"st
 const treasuryAddress = "0x11d97f31b489b9c57507839530ab9ea910979c68";
 const treasuryABI = [{"inputs":[{"internalType":"address","name":"systemCheckerContractAddress","type":"address"},{"internalType":"address","name":"milkChildContractAddress","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"gold","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"time","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"uuid","type":"uint256"}],"name":"LogGoldClaimed","type":"event"},{"inputs":[],"name":"PET_BYTES","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"_baseRate","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"_catClassBonus","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"_contractStartTime","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"_lastUpdate","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"_milkChildContractAddress","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"_systemCheckerContractAddress","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"burn","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256[]","name":"catIds","type":"uint256[]"},{"internalType":"uint256[]","name":"catClasses","type":"uint256[]"}],"name":"calcClaim","outputs":[{"internalType":"uint256","name":"reward","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"uint256[]","name":"catIds","type":"uint256[]"},{"internalType":"uint256[]","name":"catClasses","type":"uint256[]"},{"internalType":"uint256","name":"uuid","type":"uint256"}],"name":"claim","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"mint","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"baseRate","type":"uint256"}],"name":"setBaseRate","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256[]","name":"catClass","type":"uint256[]"},{"internalType":"uint256[]","name":"bonus","type":"uint256[]"}],"name":"setCatClassBonus","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"milkChildContractAddress","type":"address"}],"name":"setMilkChildContractAddress","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"timestamp","type":"uint256"}],"name":"setStartTime","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"systemCheckerContractAddress","type":"address"}],"name":"setSystemCheckerContractAddress","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"sender","type":"address"},{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"}];
 
+const milkAddress = "0x1599fe55cda767b1f631ee7d414b41f5d6de393d";
+
+const milkABI = [{ "inputs": [{ "internalType": "string", "name": "name", "type": "string" }, { "internalType": "string", "name": "symbol", "type": "string" }, { "internalType": "address", "name": "systemCheckerContractAddress", "type": "address" }], "stateMutability": "nonpayable", "type": "constructor" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "owner", "type": "address" }, { "indexed": true, "internalType": "address", "name": "spender", "type": "address" }, { "indexed": false, "internalType": "uint256", "name": "value", "type": "uint256" }], "name": "Approval", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "from", "type": "address" }, { "indexed": true, "internalType": "address", "name": "to", "type": "address" }, { "indexed": false, "internalType": "uint256", "name": "value", "type": "uint256" }], "name": "Transfer", "type": "event" }, { "inputs": [], "name": "DEPOSITOR_ROLE", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "PET_BYTES", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "_adminCanMint", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "_burnHolderAddress", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "_canMintMilk", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "_systemCheckerContractAddress", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "allowMilkMinting", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }, { "internalType": "address", "name": "spender", "type": "address" }], "name": "allowance", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "spender", "type": "address" }, { "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "approve", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "account", "type": "address" }], "name": "balanceOf", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "decimals", "outputs": [{ "internalType": "uint8", "name": "", "type": "uint8" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "spender", "type": "address" }, { "internalType": "uint256", "name": "subtractedValue", "type": "uint256" }], "name": "decreaseAllowance", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "user", "type": "address" }, { "internalType": "bytes", "name": "depositData", "type": "bytes" }], "name": "deposit", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }, { "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "gameBurn", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "to", "type": "address" }, { "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "gameMint", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "sender", "type": "address" }, { "internalType": "address", "name": "recipient", "type": "address" }, { "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "gameTransferFrom", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }, { "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "gameWithdraw", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "spender", "type": "address" }, { "internalType": "uint256", "name": "addedValue", "type": "uint256" }], "name": "increaseAllowance", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "lockAdminMinting", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "account", "type": "address" }, { "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "mint", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "name", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "burnHolderAddress", "type": "address" }], "name": "setBurnHolderAddress", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "systemCheckerContractAddress", "type": "address" }], "name": "setSystemCheckerContractAddress", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "symbol", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "totalSupply", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "recipient", "type": "address" }, { "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "transfer", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "sender", "type": "address" }, { "internalType": "address", "name": "recipient", "type": "address" }, { "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "transferFrom", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "withdraw", "outputs": [], "stateMutability": "nonpayable", "type": "function" }];
+
 const catPoints = {"cool_1": 3, "cool_2": 4, "wild_1": 5, "wild_2": 6, "classy_1": 7, "classy_2": 8, "exotic_1": 9, "exotic_2": 10};
 
 const treasuryContract = new polygonWeb3.eth.Contract(treasuryABI, treasuryAddress);
 const catsContract = new mainnetWeb3.eth.Contract(catsABI, catsAddress);
+const milkContract = new polygonWeb3.eth.Contract(milkABI, milkAddress);
 
 async function getMilkPrice() {
 	let req = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=milk&vs_currencies=usd");
@@ -22,12 +27,6 @@ async function getTier(cat) {
 	let tier = "";
 	let resp = await fetch("https://api.coolcatsnft.com/cat/" + cat);
     resp = await resp.json();
-
-    img = document.createElement('img');
-	img.src = resp.image;
-	img.className = "rounded-circle px-2 py-2";
-	img.width = "200";
-	document.querySelector("#catImages").append(img);
 
 	await resp.attributes.forEach((attr) => {
 		if (attr["trait_type"] == "tier") {
@@ -44,14 +43,14 @@ async function getCatsTiers() {
 	address = document.querySelector("#address").value;
 
 	if (address.length != 42) {
-		document.querySelector("#milkResult").textContent = "Invalid Address";
+		document.querySelector("#milkBalance").textContent = "Invalid Address";
 		return;
 	}
 
 	cats = await catsContract.methods.walletOfOwner(address).call();
 
 	if (cats.length == 0) {
-		document.querySelector("#milkResult").textContent = "You have no Cool Cats";
+		document.querySelector("#milkBalance").textContent = "You have no Cool Cats";
 		return;
 	}
 
@@ -63,19 +62,32 @@ async function getCatsTiers() {
 
 async function getMilk(addressInfo) {
 	milkPrice = await getMilkPrice();
+	address = document.querySelector("#address").value;
+
 	if (addressInfo != undefined) {
 		[cats, tiers] = addressInfo;
-		treasuryContract.methods.calcClaim(cats, tiers).call().then(function (result) {
-			document.querySelector("#milkResult").textContent = "You have " + parseFloat(result*1e-18).toFixed(2) + " MILK unclaimed";
-			document.querySelector("#priceCalculation").textContent = "$" + parseFloat(result*1e-18*milkPrice).toFixed(4) + " USD";
-			document.querySelector("#milkPrice").textContent = "(1 MILK = " + parseFloat(milkPrice).toFixed(4) + " USD)";
-			document.title = "CoolHelper - " + parseFloat(result*1e-18).toFixed(2) + " $MILK";
+
+		let unclaimed = 0.0;
+		let balance = 0.0;
+
+		await treasuryContract.methods.calcClaim(cats, tiers).call().then(function (result) {
+			unclaimed = parseFloat(result * 1e-18);
+			document.querySelector("#milkUnclaimed").textContent = unclaimed.toFixed(2);
+			document.querySelector("#usdUnclaimed").textContent = (unclaimed * milkPrice).toFixed(2);
 		});
+
+		await milkContract.methods.balanceOf(address).call().then(function (result) {
+			balance = parseFloat(result * 1e-18);
+			document.querySelector("#milkBalance").textContent = balance.toFixed(2);
+			document.querySelector("#usdBalance").textContent = (balance * milkPrice).toFixed(2);
+		});
+
+		document.querySelector("#milkTotal").textContent = (unclaimed + balance).toFixed(2);
+		document.querySelector("#usdTotal").textContent = ((unclaimed + balance)*milkPrice).toFixed(2);
 	}
 }
 
 async function getMilkTimer() {
-	document.querySelector("#catImages").innerHTML = "";
 	addressInfo = await getCatsTiers();
 	getMilk(addressInfo);
 	setInterval(getMilk, 3500, addressInfo);
